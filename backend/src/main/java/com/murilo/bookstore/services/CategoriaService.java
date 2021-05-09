@@ -4,6 +4,7 @@ import com.murilo.bookstore.entities.Categoria;
 import com.murilo.bookstore.repositories.CategoriaRepository;
 import com.murilo.bookstore.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,5 +24,10 @@ public class CategoriaService {
 
     public List<Categoria> findAll(){
         return repository.findAll();
+    }
+
+    public Categoria create(Categoria categoria){
+        categoria.setId(null);
+        return repository.save(categoria);
     }
 }
