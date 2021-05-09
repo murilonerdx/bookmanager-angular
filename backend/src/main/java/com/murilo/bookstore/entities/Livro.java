@@ -1,5 +1,7 @@
 package com.murilo.bookstore.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -13,6 +15,7 @@ public class Livro {
     private String texto;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="categoria_id")
     private Categoria categoria;
 
