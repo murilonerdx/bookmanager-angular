@@ -1,6 +1,7 @@
 package com.murilo.bookstore.services;
 
 import com.murilo.bookstore.entities.Categoria;
+import com.murilo.bookstore.entities.dto.CategoriaDTO;
 import com.murilo.bookstore.repositories.CategoriaRepository;
 import com.murilo.bookstore.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,12 @@ public class CategoriaService {
     public Categoria create(Categoria categoria){
         categoria.setId(null);
         return repository.save(categoria);
+    }
+
+    public Categoria update(Integer id, CategoriaDTO categoriaDTO){
+        Categoria entity = findById(id);
+        entity.setNome(categoriaDTO.getNome());
+        entity.setDescricao(categoriaDTO.getDescricao());
+        return repository.save(entity);
     }
 }
