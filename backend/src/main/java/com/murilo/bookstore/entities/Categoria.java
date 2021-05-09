@@ -1,9 +1,6 @@
 package com.murilo.bookstore.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +14,7 @@ public class Categoria implements Serializable {
     private String nome;
     private String descricao;
 
+    @OneToMany(mappedBy = "categoria")
     private List<Livro> livros = new ArrayList<>();
 
     public Categoria(Integer id, String nome, String descricao, List<Livro> livros) {

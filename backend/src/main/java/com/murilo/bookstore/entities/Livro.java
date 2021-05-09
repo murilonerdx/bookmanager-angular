@@ -1,13 +1,19 @@
 package com.murilo.bookstore.entities;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Livro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titulo;
     private String nomeAutor;
     private String texto;
 
+    @ManyToOne
+    @JoinColumn(name="categoria_id")
     private Categoria categoria;
 
     public Livro(Integer id, String titulo, String nomeAutor, String texto) {
