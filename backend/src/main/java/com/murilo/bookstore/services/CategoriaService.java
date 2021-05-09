@@ -38,4 +38,8 @@ public class CategoriaService {
         entity.setDescricao(categoriaDTO.getDescricao());
         return repository.save(entity);
     }
+
+    public void delete(Integer id){
+
+    }
 }

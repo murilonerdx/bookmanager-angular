@@ -3,6 +3,7 @@ package com.murilo.bookstore.resources;
 import com.murilo.bookstore.entities.Categoria;
 import com.murilo.bookstore.entities.dto.CategoriaDTO;
 import com.murilo.bookstore.services.CategoriaService;
+import com.murilo.bookstore.services.exceptions.DataIntegrityViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +44,17 @@ public class CategoriaResource {
     public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO categoriaDTO){
         Categoria newObj = service.update(id, categoriaDTO);
         return ResponseEntity.ok().body(new CategoriaDTO(newObj));
+    }
+
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        try{
+            service.delete(id);
+            return ResponseEntity.noContent().build();
+        }catch(DataIntegrityViolationException e){
+            throw new DataIntegrityViolationException("Objeto não pode ser deletado possui muitos associados");
+        }
+
     }
 
 }
