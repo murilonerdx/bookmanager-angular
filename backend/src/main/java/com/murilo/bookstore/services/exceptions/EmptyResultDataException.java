@@ -1,9 +1,9 @@
 package com.murilo.bookstore.services.exceptions;
 
-public class ObjectNotFoundException extends RuntimeException{
+public class EmptyResultDataException extends RuntimeException {
     String message;
 
-    public ObjectNotFoundException(String message) {
+    public EmptyResultDataException(String message) {
         this.message = message;
     }
 
@@ -11,4 +11,5 @@ public class ObjectNotFoundException extends RuntimeException{
     public String getMessage() {
         return message;
     }
+
 }

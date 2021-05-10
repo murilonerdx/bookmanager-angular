@@ -1,5 +1,7 @@
 package com.murilo.bookstore.resources.exceptions;
 
+import java.time.Instant;
+
 public class StandardError {
     private Long timestamp;
     private Integer status;
@@ -9,9 +11,6 @@ public class StandardError {
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;
-    }
-
-    public StandardError() {
     }
 
     public Long getTimestamp() {
