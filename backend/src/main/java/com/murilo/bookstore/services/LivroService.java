@@ -1,5 +1,6 @@
 package com.murilo.bookstore.services;
 
+import com.murilo.bookstore.entities.Categoria;
 import com.murilo.bookstore.entities.Livro;
 import com.murilo.bookstore.repositories.LivroRepository;
 import com.murilo.bookstore.services.exceptions.DataIntegrityException;
@@ -39,11 +40,11 @@ public class LivroService {
         }
     }
 
-    public Livro create(Livro livro) {
+    public Livro create(Integer id, Livro livro) {
         livro.setId(null);
+        Categoria cat = categoriaService.findById(id);
+        livro.setCategoria(cat);
         return repository.save(livro);
-
-
     }
 
     public Livro update(Integer id, Livro livro) {

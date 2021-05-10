@@ -34,10 +34,10 @@ public class LivroResource {
     }
 
     @PostMapping
-    public ResponseEntity<Livro> create(@Valid  @RequestBody Livro obj) {
-        obj = service.create(obj);
+    public ResponseEntity<Livro> create(@Valid  @RequestParam(value="categoria", defaultValue = "0") Integer id_cat, @RequestBody Livro obj) {
+        Livro newObj = service.create(id_cat, obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+        return ResponseEntity.created(uri).body(newObj);
     }
 
     @PutMapping(value = "/{id}")
