@@ -1,8 +1,10 @@
 package com.murilo.bookstore.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Entity
@@ -10,6 +12,8 @@ public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty(message = "Campo TITULO é requerido")
+    @Length(min=5, max=20, message="O campo deve ter entre 5 e 20 caracteres")
     private String titulo;
     private String nomeAutor;
     private String texto;

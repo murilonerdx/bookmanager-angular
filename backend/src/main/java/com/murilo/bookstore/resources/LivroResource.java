@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,14 +34,14 @@ public class LivroResource {
     }
 
     @PostMapping
-    public ResponseEntity<Livro> create(@RequestBody Livro obj) {
+    public ResponseEntity<Livro> create(@Valid  @RequestBody Livro obj) {
         obj = service.create(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro livro) {
+    public ResponseEntity<Livro> update(@Valid @PathVariable Integer id, @RequestBody Livro livro) {
         Livro newObj = service.update(id, livro);
         return ResponseEntity.ok().body(newObj);
     }

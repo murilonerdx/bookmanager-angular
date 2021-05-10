@@ -1,10 +1,15 @@
 package com.murilo.bookstore.entities.dto;
 
 import com.murilo.bookstore.entities.Livro;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotEmpty;
 
 public class LivroDTO {
 
     private Integer id;
+    @NotEmpty(message = "Campo TITULO é requerido")
+    @Length(min=5, max=20, message="O campo deve ter entre 5 e 20 caracteres")
     private String titulo;
 
     public LivroDTO(Integer id, String titulo) {
